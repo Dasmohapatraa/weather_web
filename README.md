@@ -7,6 +7,7 @@ A real-time weather forecasting web application built with vanilla JavaScript an
 ## 🔴 Live Demo
 
 > Open `index.html` directly in your browser — no build tools or server required.
+> GitHub page link: https://dasmohapatraa.github.io/weather_web/
 
 ---
 
