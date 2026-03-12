@@ -107,19 +107,6 @@ https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_KEY&units=me
 
 ---
 
-## 📸 Screenshots
-
-> _Add screenshots of your app here by dragging images into this section on GitHub._
-
-| Default State | Sunny Weather | Rainy Weather |
-|---------------|--------------|---------------|
-| ![empty](<img width="1891" height="1013" alt="Screenshot 2026-03-12 183141" src="https://github.com/user-attachments/assets/33b6a329-e91c-4114-b2f8-27bdfcf83900" />
-.png) | ![sunny](<img width="1885" height="1019" alt="Screenshot 2026-03-12 183237" src="https://github.com/user-attachments/assets/0bf276be-22e6-4513-a00c-efcd2d8d88ff" />
-.png) | ![rainy](<img width="1874" height="1003" alt="Screenshot 2026-03-12 183304" src="https://github.com/user-attachments/assets/a0462ce3-0a2d-4267-bdbb-c0cbfab9473b" />
-.png) |
-
----
-
 ## 🧪 Demo Mode
 
 Don't have an API key yet? The app ships with built-in demo data for 6 cities so you can explore the UI immediately:
