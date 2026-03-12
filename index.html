@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atmos — Weather Intelligence</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <!-- Background layers -->
+    <div class="bg-base" id="bgBase"></div>
+    <div class="bg-glow bg-glow-top" id="bgGlowTop"></div>
+    <div class="bg-glow bg-glow-bottom" id="bgGlowBottom"></div>
+
+    <!-- Particles container -->
+    <div class="particles" id="particles"></div>
+
+    <!-- App Shell -->
+    <div class="app">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <div class="brand-name">Atmos</div>
+          <div class="brand-sub">WEATHER INTELLIGENCE</div>
+        </div>
+        <div class="live-clock">
+          <div class="clock-time" id="clockTime">00:00</div>
+          <div class="clock-date" id="clockDate">—</div>
+        </div>
+      </header>
+
+      <!-- Search -->
+      <section class="search-section">
+        <form class="search-form" id="searchForm">
+          <div class="search-bar-wrap">
+            <span class="search-icon">⌕</span>
+            <input
+              class="search-input"
+              id="searchInput"
+              type="text"
+              placeholder="Search any city..."
+              autocomplete="off"
+            />
+            <button class="search-btn" type="submit" id="searchBtn">GO</button>
+          </div>
+        </form>
+
+        <!-- Quick city pills -->
+        <div class="city-pills" id="cityPills">
+          <button class="pill" data-city="London">London</button>
+          <button class="pill" data-city="Tokyo">Tokyo</button>
+          <button class="pill" data-city="New York">New York</button>
+          <button class="pill" data-city="Sydney">Sydney</button>
+          <button class="pill" data-city="Paris">Paris</button>
+          <button class="pill" data-city="Dubai">Dubai</button>
+        </div>
+      </section>
+
+      <!-- Loading State -->
+      <div class="loading-state hidden" id="loadingState">
+        <div class="loading-ring"></div>
+        <p class="loading-text">FETCHING ATMOSPHERE...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon" id="emptyIcon">◉</div>
+        <p class="empty-msg">Where in the world are you?</p>
+        <p class="empty-sub">SEARCH A CITY TO BEGIN</p>
+      </div>
+
+      <!-- Error State -->
+      <div class="error-state hidden" id="errorState">
+        <p id="errorMsg">Something went wrong.</p>
+      </div>
+
+      <!-- Weather Content -->
+      <div class="weather-content hidden" id="weatherContent">
+
+        <!-- Main Card -->
+        <div class="card main-card" id="mainCard">
+          <div class="main-top">
+            <div class="location-info">
+              <div class="country-tag" id="countryTag">📍 —</div>
+              <div class="city-name" id="cityName">—</div>
+            </div>
+            <div class="unit-toggle">
+              <button class="unit-btn active" id="btnC" data-unit="C">°C</button>
+              <button class="unit-btn" id="btnF" data-unit="F">°F</button>
+            </div>
+          </div>
+
+          <div class="temp-row">
+            <div class="temp-display">
+              <span id="tempValue">—</span><span class="temp-degree" id="tempDegree">°</span>
+            </div>
+            <div class="temp-meta">
+              <div class="weather-desc" id="weatherDesc">—</div>
+              <div class="feels-like" id="feelsLike">Feels —°</div>
+              <div class="temp-range" id="tempRange">—° / —°</div>
+            </div>
+          </div>
+
+          <div class="card-decoration"></div>
+          <div class="card-glow-spot"></div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="card metric-card">
+            <div class="metric-label">💧 HUMIDITY</div>
+            <div class="metric-value-row">
+              <span class="metric-val" id="humidity">—</span>
+              <span class="metric-unit">%</span>
+            </div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-label">⬇ PRESSURE</div>
+            <div class="metric-value-row">
+              <span class="metric-val" id="pressure">—</span>
+              <span class="metric-unit">hPa</span>
+            </div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-label">💨 WIND</div>
+            <div class="metric-value-row">
+              <span class="metric-val" id="wind">—</span>
+              <span class="metric-unit" id="windDir">km/h</span>
+            </div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-label">👁 VISIBILITY</div>
+            <div class="metric-value-row">
+              <span class="metric-val" id="visibility">—</span>
+              <span class="metric-unit">km</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sun Times -->
+        <div class="card sun-card">
+          <div class="sun-item">
+            <div class="sun-icon">🌅</div>
+            <div class="sun-label">SUNRISE</div>
+            <div class="sun-time" id="sunriseTime">—</div>
+          </div>
+          <div class="sun-divider"></div>
+          <div class="sun-item">
+            <div class="sun-icon">🌇</div>
+            <div class="sun-label">SUNSET</div>
+            <div class="sun-time" id="sunsetTime">—</div>
+          </div>
+          <div class="sun-divider"></div>
+          <div class="sun-item">
+            <div class="sun-icon">☁</div>
+            <div class="sun-label">CLOUD</div>
+            <div class="sun-time" id="cloudCover">—</div>
+          </div>
+        </div>
+
+        <!-- 5-Day Forecast -->
+        <div class="card forecast-card-wrap">
+          <div class="forecast-label">5-DAY OUTLOOK</div>
+          <div class="forecast-row" id="forecastRow">
+            <!-- Forecast items injected by JS -->
+          </div>
+        </div>
+
+        <!-- Coordinates -->
+        <div class="coords-row" id="coordsRow">—</div>
+
+      </div><!-- /weather-content -->
+    </div><!-- /app -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
